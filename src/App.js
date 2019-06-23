@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { getSymbols } from "./api";
+import { getSymbols, getRate } from "./api";
 import CurrencyOptions from "./CurrencyOptions";
 
 class App extends React.Component {
@@ -10,7 +10,8 @@ class App extends React.Component {
       from: "EUR",
       to: "EUR",
       amount: 1,
-      currencies: []
+      currencies: [],
+      result: null
     };
   }
 
@@ -34,10 +35,19 @@ class App extends React.Component {
     });
   };
 
+  handleFormSubmit = async event => {
+    event.preventDefault();
+    const { from, to, amount } = this.state;
+    const rate = await getRate(from, to, amount);
+    this.setState({
+      result: rate * amount
+    });
+  };
+
   render() {
     return (
       <div className="App">
-        <form>
+        <form onSubmit={this.handleFormSubmit}>
           <label>
             Amount:
             <input type="number" />
