@@ -10,3 +10,10 @@ export async function getSymbols() {
 
   return response.data.symbols;
 }
+
+export async function getRate(from, to, amount) {
+  const response = await axios.get(`${BASE_URL}convert`, {
+    params: { access_key: API_KEY, from: from, to: to, amount: amount }
+  });
+  return response.data.info.rate;
+}
