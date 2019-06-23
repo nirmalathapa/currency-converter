@@ -44,13 +44,23 @@ class App extends React.Component {
     });
   };
 
+  handleAmount = event => {
+    this.setState({
+      amount: event.target.value
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <form onSubmit={this.handleFormSubmit}>
           <label>
             Amount:
-            <input type="number" />
+            <input
+              type="number"
+              value={this.state.amount}
+              onChange={this.handleAmount}
+            />
           </label>
           <label>
             From:
