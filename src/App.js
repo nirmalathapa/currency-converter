@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      from: 'EUR',
+      from: 'DKK',
       to: 'EUR',
       amount: 1,
       currencies: [],
@@ -40,7 +40,7 @@ class App extends React.Component {
     const {from, to, amount} = this.state
     const rate = await getRate(from, to, amount)
     this.setState({
-      result: rate * amount,
+      result: `${rate * amount} ${to}`
     })
   }
 
