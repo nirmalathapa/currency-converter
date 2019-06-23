@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { getSymbols } from "./api";
+import CurrencyOptions from "./CurrencyOptions";
 
 class App extends React.Component {
   constructor(props) {
@@ -32,15 +33,13 @@ class App extends React.Component {
           <label>
             From:
             <select>
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
+              <CurrencyOptions currencies={this.state.currencies} />
             </select>
           </label>
           <label>
             To:
             <select>
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
+              <CurrencyOptions currencies={this.state.currencies} />
             </select>
           </label>
           <input type="submit" value="Convert" />
