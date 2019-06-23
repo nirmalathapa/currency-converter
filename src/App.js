@@ -22,6 +22,18 @@ class App extends React.Component {
     });
   }
 
+  handleFromCurrency = event => {
+    this.setState({
+      from: event.target.value
+    });
+  };
+
+  handleToCurrency = event => {
+    this.setState({
+      to: event.target.value
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -32,13 +44,13 @@ class App extends React.Component {
           </label>
           <label>
             From:
-            <select>
+            <select value={this.state.from} onChange={this.handleFromCurrency}>
               <CurrencyOptions currencies={this.state.currencies} />
             </select>
           </label>
           <label>
             To:
-            <select>
+            <select value={this.state.to} onChange={this.handleToCurrency}>
               <CurrencyOptions currencies={this.state.currencies} />
             </select>
           </label>
