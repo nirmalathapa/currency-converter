@@ -76,6 +76,9 @@ class App extends React.Component {
           </label>
           <input type="submit" value="Convert" />
         </form>
+        <div className="result">
+          <h2>{this.state.result}</h2>
+        </div>
       </div>
     );
   }
