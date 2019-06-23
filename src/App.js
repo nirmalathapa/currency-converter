@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { getSymbols } from "./api";
 
 class App extends React.Component {
   constructor(props) {
@@ -7,8 +8,17 @@ class App extends React.Component {
     this.state = {
       from: "EUR",
       to: "EUR",
-      amount: 1
+      amount: 1,
+      currencies: []
     };
+  }
+
+  async componentDidMount() {
+    const symbols = await getSymbols();
+    const currencies = Object.keys(symbols);
+    this.setState({
+      currencies
+    });
   }
 
   render() {
