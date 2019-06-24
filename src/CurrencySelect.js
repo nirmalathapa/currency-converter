@@ -1,14 +1,10 @@
-import React from 'react'
+import React from "react";
 
-const CurrencySelect = ({id, value, handleChange, currencies}) => (
-  <select
-    id="id"
-    className="w-full"
-    value={value}
-    onChange={handleChange}>
+const CurrencySelect = ({ id, value, handleChange, currencies }) => (
+  <select id="id" className="w-full" value={value} onChange={handleChange}>
     <CurrencyOptions currencies={currencies} />
   </select>
-)
+);
 
 const CurrencyOptions = ({ currencies }) =>
   currencies.map(currency => (
