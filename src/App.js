@@ -1,67 +1,70 @@
-import React from 'react'
-import './App.css'
-import {getSymbols, getRate} from './api'
-import CurrencyOptions from './CurrencyOptions'
+import React from "react";
+import "./App.css";
+import { getSymbols, getRate } from "./api";
+import CurrencyOptions from "./CurrencyOptions";
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      from: 'DKK',
-      to: 'EUR',
+      from: "DKK",
+      to: "EUR",
       amount: 1,
       currencies: [],
-      result: null,
-    }
+      result: null
+    };
   }
 
   async componentDidMount() {
-    const symbols = await getSymbols()
-    const currencies = Object.keys(symbols)
+    const symbols = await getSymbols();
+    const currencies = Object.keys(symbols);
     this.setState({
-      currencies,
-    })
+      currencies
+    });
   }
 
   handleFromCurrency = event => {
     this.setState({
-      from: event.target.value,
-    })
-  }
+      from: event.target.value
+    });
+  };
 
   handleToCurrency = event => {
     this.setState({
-      to: event.target.value,
-    })
-  }
+      to: event.target.value
+    });
+  };
 
   handleFormSubmit = async event => {
-    event.preventDefault()
-    const {from, to, amount} = this.state
-    const rate = await getRate(from, to, amount)
+    event.preventDefault();
+    const { from, to, amount } = this.state;
+    const rate = await getRate(from, to, amount);
     this.setState({
       result: `${rate * amount} ${to}`
-    })
-  }
+    });
+  };
 
   handleAmount = event => {
     this.setState({
-      amount: event.target.value,
-    })
-  }
+      amount: event.target.value
+    });
+  };
 
   render() {
     return (
       <div className="bg-white rounded-t-lg overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center">
         <div className="w-full max-w-xs">
+          <h1 className="text-center text-4xl mb-6">Currency Converter</h1>
           <form
             onSubmit={this.handleFormSubmit}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="amount">
+                  htmlFor="amount"
+                >
                   Amount:
                 </label>
                 <input
@@ -78,14 +81,16 @@ class App extends React.Component {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="from">
+                  htmlFor="from"
+                >
                   From:
                 </label>
                 <select
                   id="from"
                   className="w-full block"
                   value={this.state.from}
-                  onChange={this.handleFromCurrency}>
+                  onChange={this.handleFromCurrency}
+                >
                   <CurrencyOptions currencies={this.state.currencies} />
                 </select>
               </div>
@@ -93,14 +98,16 @@ class App extends React.Component {
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="to">
+                  htmlFor="to"
+                >
                   To:
                 </label>
                 <select
                   id="to"
                   className="w-full"
                   value={this.state.to}
-                  onChange={this.handleToCurrency}>
+                  onChange={this.handleToCurrency}
+                >
                   <CurrencyOptions currencies={this.state.currencies} />
                 </select>
               </div>
@@ -118,16 +125,14 @@ class App extends React.Component {
 
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="result w-full px-3 mb-6 md:mb-0">
-                <h2 className="text-center text-5xl">
-                  {this.state.result}
-                </h2>
+                <h2 className="text-center text-5xl">{this.state.result}</h2>
               </div>
             </div>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
