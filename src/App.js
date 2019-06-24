@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { getSymbols, getRate } from "./api";
-import CurrencyOptions from "./CurrencyOptions";
+import CurrencySelect from "./CurrencySelect";
 
 class App extends React.Component {
   constructor(props) {
@@ -85,14 +85,12 @@ class App extends React.Component {
                 >
                   From:
                 </label>
-                <select
+                <CurrencySelect
                   id="from"
-                  className="w-full block"
                   value={this.state.from}
-                  onChange={this.handleFromCurrency}
-                >
-                  <CurrencyOptions currencies={this.state.currencies} />
-                </select>
+                  handleChange={this.handleFromCurrency}
+                  currencies={this.state.currencies}
+                />
               </div>
 
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -102,14 +100,12 @@ class App extends React.Component {
                 >
                   To:
                 </label>
-                <select
+                <CurrencySelect
                   id="to"
-                  className="w-full"
                   value={this.state.to}
-                  onChange={this.handleToCurrency}
-                >
-                  <CurrencyOptions currencies={this.state.currencies} />
-                </select>
+                  handleChange={this.handleToCurrency}
+                  currencies={this.state.currencies}
+                />
               </div>
             </div>
 
