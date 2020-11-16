@@ -1,4 +1,4 @@
-## Currecny Converter 
+## Currency Converter 
 Gives exchange rate for all the countries and the desired total amount. 
 
 ## Preview
